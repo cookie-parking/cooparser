@@ -68,6 +68,11 @@ getDataAboutURL();
 
 The 'cooparser' could be completed with the help of **[@jhaemin](https://github.com/jhaemin).** Thank you very much to ***Haemin***.
 
+## Contributors
+-  [H.J.Lee](https://github.com/hyundang)
+-  [J.W.Song](https://github.com/bluayer)
+
+
 ## License
 
 [MIT](LICENSE)
