@@ -1,18 +1,12 @@
-declare class Cooparser {
+import { Cooparser, ParseResponse } from './type';
+declare class CooparserImpl implements Cooparser {
     private static instance;
     private constructor();
-    static getInstance(): Cooparser;
-    parse(url: string): Promise<{
-        title: string;
-        content: string;
-        link: string;
-        thumbnail: string;
-        favicon: any;
-        provider: string;
-    }>;
+    static getInstance(): CooparserImpl;
+    parse(url: string): Promise<ParseResponse>;
     private returnHTML;
     private getHTML;
     private findFavicon;
     private sliceURL;
 }
-export default Cooparser;
+export default CooparserImpl;
