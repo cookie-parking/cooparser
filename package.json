@@ -1,8 +1,8 @@
 {
   "name": "cooparser",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "cooparser",
-  "main": "dist/cooparser.js",
+  "main": "dist/cooparser.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -10,12 +10,12 @@
   },
   "license": "MIT",
   "contributors": [
-    "HyunJinLee <hyunjin@github.com> (https://github.com/hyundang)",
+    "HyunJinLee <hyunjin5697@yonsei.ac.kr> (https://github.com/hyundang)",
     "JungWooSong <ijacsong98@gmail.com> (https://github.com/bluayer)"
   ],
   "keywords": [
     "parser",
-    "og"
+    "og-tags"
   ],
   "repository": {
     "type": "git",
