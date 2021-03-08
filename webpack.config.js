@@ -14,8 +14,7 @@ function generateConfig(name) {
     },
     module: {
         rules: [
-            { test: /\.ts$/, use: 'awesome-typescript-loader' },
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { test: /\.tsx?$/, loader: "ts-loader" }
         ]
     },
     resolve: {
