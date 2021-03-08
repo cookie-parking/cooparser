@@ -5,12 +5,12 @@ function generateConfig(name) {
   const config = {
     entry: './lib/index.ts',
     output: {
-      globalObject: 'this',
       path: __dirname + '/dist/',
       filename: name + '.js',
       sourceMapFilename: name + '.map',
       library: 'cooparser',
-      libraryTarget: 'umd'
+      libraryTarget: 'umd',
+      globalObject: 'this'
     },
     module: {
         rules: [
@@ -25,8 +25,6 @@ function generateConfig(name) {
   };
   return config;
 }
-
-
 
 ['cooparser', 'cooparser.min'].forEach((key) => {
   config.push(generateConfig(key));

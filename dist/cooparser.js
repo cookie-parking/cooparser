@@ -19777,10 +19777,10 @@ module.exports = Mixin;
 
 /***/ }),
 
-/***/ "./lib/index.ts":
-/*!**********************!*\
-  !*** ./lib/index.ts ***!
-  \**********************/
+/***/ "./lib/cooparser.ts":
+/*!**************************!*\
+  !*** ./lib/cooparser.ts ***!
+  \**************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -19846,8 +19846,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var cheerio = __importStar(__webpack_require__(/*! cheerio */ "./node_modules/cheerio/index.js"));
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-var cooparser = {
-    parse: function (url) {
+var Cooparser = /** @class */ (function () {
+    function Cooparser() {
+    }
+    Cooparser.getInstance = function () {
+        return this.instance || (this.instance = new this());
+    };
+    Cooparser.prototype.parse = function (url) {
         var _a, _b, _c, _d;
         return __awaiter(this, void 0, void 0, function () {
             var html, $, title, content, thumbnail, provider, favicon, data;
@@ -19877,8 +19882,9 @@ var cooparser = {
                 }
             });
         });
-    },
-    returnHTML: function (url) {
+    };
+    ;
+    Cooparser.prototype.returnHTML = function (url) {
         return __awaiter(this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
@@ -19890,8 +19896,9 @@ var cooparser = {
                 }
             });
         });
-    },
-    getHTML: function (url) {
+    };
+    ;
+    Cooparser.prototype.getHTML = function (url) {
         return __awaiter(this, void 0, void 0, function () {
             var error_1;
             return __generator(this, function (_a) {
@@ -19908,8 +19915,9 @@ var cooparser = {
                 }
             });
         });
-    },
-    findFavicon: function (html, url) {
+    };
+    ;
+    Cooparser.prototype.findFavicon = function (html, url) {
         return __awaiter(this, void 0, void 0, function () {
             var location, start, end, favicon_url;
             return __generator(this, function (_a) {
@@ -19934,15 +19942,37 @@ var cooparser = {
                 return [2 /*return*/, ''];
             });
         });
-    },
-    sliceURL: function (url) {
+    };
+    ;
+    Cooparser.prototype.sliceURL = function (url) {
         var start = url.indexOf('/');
         var end = url.indexOf('/', start + 2);
         var slice_url = url.substring(0, end);
         return slice_url;
-    }
+    };
+    ;
+    return Cooparser;
+}());
+exports.default = Cooparser;
+
+
+/***/ }),
+
+/***/ "./lib/index.ts":
+/*!**********************!*\
+  !*** ./lib/index.ts ***!
+  \**********************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.default = cooparser;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var cooparser_1 = __importDefault(__webpack_require__(/*! ./cooparser */ "./lib/cooparser.ts"));
+var cooparser = cooparser_1.default.getInstance();
+module.exports = cooparser;
 
 
 /***/ })
