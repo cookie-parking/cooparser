@@ -17,7 +17,7 @@ class Cooparser {
         const content = $("meta[property='og:description']").attr('content') ?? '';
         let thumbnail = $("meta[property='og:image']").attr('content') ?? '';
         let provider = $("meta[property='og:site_name']").attr('content') ?? '-';
-        const favicon = this.findFavicon(html, url);
+        const favicon = await this.findFavicon(html, url);
     
         if (thumbnail[0] == '/' && thumbnail[1] == '/') {
             thumbnail = 'https:' + thumbnail;

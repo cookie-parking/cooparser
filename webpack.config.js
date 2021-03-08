@@ -3,6 +3,8 @@ const config = [];
 function generateConfig(name) {
   const compress = name.indexOf('min') > -1;
   const config = {
+    /** @type {import('webpack').Configuration} */
+    target: 'node',
     entry: './lib/index.ts',
     output: {
       path: __dirname + '/dist/',
@@ -10,7 +12,7 @@ function generateConfig(name) {
       library: 'cooparser',
       libraryTarget: 'umd',
       umdNamedDefine: true,
-      globalObject: 'typeof self !== \'undefined\' ? self : this',
+      globalObject: 'this',
     },
     module: {
         rules: [

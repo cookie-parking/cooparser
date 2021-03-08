@@ -1,6 +1,6 @@
 {
   "name": "cooparser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "cooparser",
   "main": "dist/cooparser.js",
   "scripts": {
