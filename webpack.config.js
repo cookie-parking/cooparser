@@ -10,7 +10,6 @@ function generateConfig(name) {
     output: {
       path: __dirname + '/dist/',
       filename: name + '.js',
-      sourceMapFilename: name + '.map',
       library: 'cooparser',
       libraryTarget: 'umd',
       umdNamedDefine: true,
@@ -24,7 +23,6 @@ function generateConfig(name) {
     resolve: {
         extensions: [".ts", ".js", ".json"]
     },
-    devtool: 'source-map',
     mode: compress ? 'production' : 'development'
   };
   return config;
