@@ -1,6 +1,6 @@
 # cooparser
 
-[![npm version](https://img.shields.io/npm/v/axios.svg?style=flat-square)](https://www.npmjs.org/package/cooparser)
+[![npm version](https://img.shields.io/npm/v/cooparser.svg?style=flat-square)](https://www.npmjs.org/package/cooparser)
 [![install size](https://packagephobia.com/badge?p=cooparser)](https://packagephobia.com/result?p=cooparser)
 [![npm downloads](https://img.shields.io/npm/dm/cooparser.svg?style=flat-square)](https://npm-stat.com/charts.html?package=cooparser)
 [![Open Source Helpers](https://www.codetriage.com/cookie-parking/cooparser/badges/users.svg)](https://www.codetriage.com/cookie-parking/cooparser)
@@ -51,7 +51,7 @@ const getDataAboutURL = async () => {
 getDataAboutURL();
 ```
 
-The response is as follows:
+**The response is as follows:**
 
 ```ts
 {
@@ -66,7 +66,7 @@ The response is as follows:
 
 ## Credits
 
-The 'cooparser' could be completed with the help of [@jhaemin](https://github.com/jhaemin). Thank you very much to Haemin.
+The 'cooparser' could be completed with the help of **[@jhaemin](https://github.com/jhaemin).** Thank you very much to ***Haemin***.
 
 ## License
 
