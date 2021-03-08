@@ -1,8 +1,9 @@
 {
   "name": "cooparser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "cooparser",
   "main": "dist/cooparser.min.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",

@@ -1,15 +1,16 @@
+import { Cooparser, ParseResponse } from './type';
 import * as cheerio from 'cheerio';
 import axios from 'axios';
 
-class Cooparser {
-    private static instance: Cooparser;
+class CooparserImpl implements Cooparser {
+    private static instance: CooparserImpl;
     private constructor () { }
 
     public static getInstance () {
         return this.instance || (this.instance = new this());
     }
 
-    public async parse (url: string) {
+    public async parse (url: string): Promise<ParseResponse> {
         const html = await this.returnHTML(url);
     
         const $ = cheerio.load(html);
@@ -78,4 +79,4 @@ class Cooparser {
     };
 }
 
-export default Cooparser;
+export default CooparserImpl;
