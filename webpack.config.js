@@ -4,9 +4,6 @@ function generateConfig(name) {
   const compress = name.indexOf('min') > -1;
   const config = {
     entry: './lib/index.ts',
-    externals: {
-      axios: 'axios'
-    },
     output: {
       path: __dirname + '/dist/',
       filename: name + '.js',
