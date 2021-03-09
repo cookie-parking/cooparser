@@ -8,5 +8,4 @@ export type ParseResponse = {
 
 export interface Cooparser {
     parse: (url: string) => Promise<ParseResponse>;
-    parseList: (urlList: string[]) => Promise<ParseResponse[]>;
 }

@@ -4,7 +4,6 @@ declare class CooparserImpl implements Cooparser {
     private constructor();
     static getInstance(): CooparserImpl;
     parse(url: string): Promise<ParseResponse>;
-    parseList(urlList: string[]): Promise<ParseResponse[]>;
     private returnHTML;
     private getHTML;
     private findFavicon;
