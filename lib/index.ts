@@ -3,4 +3,4 @@ import CooparserImpl from './cooparser';
 
 const cooparser = CooparserImpl.getInstance();
 
-export { ParseResponse, cooparser}
+export { ParseResponse, cooparser };
