@@ -10,6 +10,8 @@ Sites information parser for the browser and node.js with javascript & typescrip
   - [Features](#features)
   - [Installing](#installing)
   - [How to use](#how-to-use)
+  - [Interface](#interface)
+  - [Response Schema](#response-schema)
   - [Credits](#credits)
   - [License](#license)
 
@@ -67,9 +69,25 @@ const getDataAboutURL = async () => {
 getDataAboutURL();
 ```
 
+## Interface
+
+You can see `ParseResponse` at next chapter(Response Schema).
+
+The methods we provide are:
+
+```ts
+interface Cooparser {
+    parse: (url: string) => Promise<ParseResponse>;
+    parseList: (urlList: string[]) => Promise<ParseResponse[]>;
+}
+```
+
+## Response Schema
+
 **The response is as follows:**
 
 ```ts
+// Parse Response
 {
     title: string
     content: string
@@ -85,9 +103,8 @@ getDataAboutURL();
 The 'cooparser' could be completed with the help of **[@jhaemin](https://github.com/jhaemin).** Thank you very much to ***Haemin***.
 
 ## Contributors
--  [H.J.Lee](https://github.com/hyundang)
 -  [J.W.Song](https://github.com/bluayer)
-
+-  [H.J.Lee](https://github.com/hyundang)
 
 ## License
 
