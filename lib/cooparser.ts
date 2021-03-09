@@ -10,36 +10,52 @@ class CooparserImpl implements Cooparser {
         return this.instance || (this.instance = new this());
     }
 
-    public async parse (url: string): Promise<ParseResponse> {
-        const html = await this.returnHTML(url);
-    
-        const $ = cheerio.load(html);
-        const title = $("meta[property='og:title']").attr('content') ?? $('title').text();
-        const content = $("meta[property='og:description']").attr('content') ?? '';
-        const provider = $("meta[property='og:site_name']").attr('content') ?? '-';
-        const favicon = await this.findFavicon(html, $, url);
+    public async parse (url: string): Promise<ParseResponse | undefined> {
+        try {
+            const html = await this.returnHTML(url);
 
-        let thumbnail = $("meta[property='og:image']").attr('content') ?? '';
-        if (thumbnail.length >= 2 && thumbnail[0] === '/' && thumbnail[1] === '/') {
-            thumbnail = 'https:' + thumbnail;
+            const $ = cheerio.load(html);
+            const title = $("meta[property='og:title']").attr('content') ?? $('title').text();
+            const content = $("meta[property='og:description']").attr('content') ?? '';
+            const provider = $("meta[property='og:site_name']").attr('content') ?? '-';
+            const favicon = await this.findFavicon(html, $, url);
+
+            let thumbnail = $("meta[property='og:image']").attr('content') ?? '';
+            if (thumbnail.length >= 2 && thumbnail[0] === '/' && thumbnail[1] === '/') {
+                thumbnail = 'https:' + thumbnail;
+            }
+
+            const data = {
+                title,
+                content,
+                link: url,
+                thumbnail,
+                favicon,
+                provider
+            };
+
+            return data;
+        } catch (error) {
+            console.log(error);
+            return {
+                link: url
+            };
         }
-    
-        const data = {
-            title,
-            content,
-            link: url,
-            thumbnail,
-            favicon,
-            provider
-        };
-    
-        return data;
     };
 
     public async parseList (urlList: string[]): Promise<ParseResponse[]> {
-        return await Promise.all(urlList.map(url => {
-            return this.parse(url);
-        }))
+        try {
+            return Promise.all(urlList.map(async url => {
+                return this.parse(url);
+            }))
+        } catch (error) {
+            console.log(error);
+            return urlList.map(url => {
+                return {
+                    link: url
+                }
+            })
+        }
     }
 
     private async returnHTML (url: string) {
@@ -51,7 +67,7 @@ class CooparserImpl implements Cooparser {
         try {
             return await axios.get(url);
         } catch (error) {
-            console.log('[GET HTML] ERROR: ', error);
+            throw new Error('Fail to get html at:' + url);
         }
     };
 

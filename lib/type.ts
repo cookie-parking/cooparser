@@ -1,9 +1,10 @@
 export type ParseResponse = {
-    title: string;
-    content: string;
-    thumbnail: string;
-    provider: string;
-    favicon: string;
+    title?: string;
+    content?: string;
+    link: string;
+    thumbnail?: string;
+    provider?: string;
+    favicon?: string;
 }
 
 export interface Cooparser {
