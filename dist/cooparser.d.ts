@@ -8,6 +8,6 @@ declare class CooparserImpl implements Cooparser {
     private returnHTML;
     private getHTML;
     private findFavicon;
-    private sliceURL;
+    private getURLDomain;
 }
 export default CooparserImpl;
