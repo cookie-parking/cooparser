@@ -36,6 +36,12 @@ class CooparserImpl implements Cooparser {
         return data;
     };
 
+    public async parseList (urlList: string[]): Promise<ParseResponse[]> {
+        return await Promise.all(urlList.map(url => {
+            return this.parse(url);
+        }))
+    }
+
     private async returnHTML (url: string) {
         const response = await this.getHTML(url);
         return response.data;
