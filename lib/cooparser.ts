@@ -16,11 +16,11 @@ class CooparserImpl implements Cooparser {
         const $ = cheerio.load(html);
         const title = $("meta[property='og:title']").attr('content') ?? $('title').text();
         const content = $("meta[property='og:description']").attr('content') ?? '';
+        const provider = $("meta[property='og:site_name']").attr('content') ?? '-';
+        const favicon = await this.findFavicon(html, $, url);
+
         let thumbnail = $("meta[property='og:image']").attr('content') ?? '';
-        let provider = $("meta[property='og:site_name']").attr('content') ?? '-';
-        const favicon = await this.findFavicon(html, url);
-    
-        if (thumbnail[0] == '/' && thumbnail[1] == '/') {
+        if (thumbnail.length >= 2 && thumbnail[0] === '/' && thumbnail[1] === '/') {
             thumbnail = 'https:' + thumbnail;
         }
     
@@ -55,33 +55,21 @@ class CooparserImpl implements Cooparser {
         }
     };
 
-    private async findFavicon (html: any , url: string) {
-        let location = html.indexOf(`<link rel="shortcut icon`);
-        if (location == -1) {
-            location = html.indexOf(`<link rel="apple-touch-icon`);
+    private async findFavicon (html: any, $: cheerio.Root, url: string) {
+        const shortcutIconURL = $(`link[rel="shortcut icon"]`).attr('href') ?? undefined;
+        const appleIconURL = $(`link[rel="apple-touch-icon"]`).attr('href') ?? undefined;
+        const iconURL = (shortcutIconURL ? shortcutIconURL : appleIconURL) ?? '';
+        if (iconURL === '' || iconURL[0] !== '/') {
+            return iconURL;
         }
-        if (location != -1) {
-            let start = html.indexOf(`href=`, location);
-            if (start != -1) {
-                let end = html.indexOf(`"`, start + 6);
-                let favicon_url = html.substring(start + 6, end);
-                if (favicon_url[0] == '/' && favicon_url[1] != '/') {
-                    favicon_url = this.sliceURL(url) + favicon_url;
-                }
-                if (favicon_url[0] == '/' && favicon_url[1] == '/') {
-                    favicon_url = 'http:' + favicon_url;
-                }
-                return favicon_url;
-            }
-        }
-        return '';
+        const httpPrefix = 'https:';
+        const faviconURL = iconURL[1] === '/' ? (httpPrefix + iconURL) : (this.getURLDomain(url) + iconURL);
+        return faviconURL;
     };
 
-    private sliceURL (url: string) {
-        const start = url.indexOf('/');
-        const end = url.indexOf('/', start + 2);
-        const slice_url = url.substring(0, end);
-        return slice_url;
+    private getURLDomain (url: string) {
+        const end = url.indexOf('/', url.indexOf('/') + 2);
+        return url.substring(0, end);
     };
 }
 
